@@ -5,11 +5,13 @@ A tool to gently watch object properties, slowing down the browser as less as po
 # Typical usage
 
 ```
-var el = $('#element-with-slow-loading-3rd-party-dynamic-objects');
-gentleWatch(el, 'offsetHeight', function() {
+var $el = $('#element-with-slow-loading-3rd-party-dynamic-objects');
+gentleWatch($el[0], 'offsetHeight', function() {
   // Complex align algoritm goes here
 });
 ```
+
+*Yes, I know, you proudly write `document.getElementById('x')` instead of `$('#x')[0]`. I am just trying to talk a common language in examples.*
 
 # Complete API
 
@@ -24,7 +26,7 @@ var callback = function(newValue, object, property, previousValue) {
 };
 
 // Subscribe
-gentleWatch(el, 'offsetHeight', callback);
+gentleWatch(object, 'propertyName', callback);
 
 // Unsubscribe
 gentleWatch.unwatch(callback);
